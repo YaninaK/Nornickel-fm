@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 __all__ = ["generate_optimal_features_ni"]
 
 
-def generate_optimal_features(df: pd.DataFrame) -> pd.DataFrame:
+def generate_optimal_features_ni(df: pd.DataFrame) -> pd.DataFrame:
 
     logging.info("Adding process result features...")
 
