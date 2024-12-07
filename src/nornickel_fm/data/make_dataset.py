@@ -13,7 +13,7 @@ SAVE = True
 
 PATH = ""
 FOLDER_PATH = "data/01_raw/"
-FILE_NAME = ""
+FILE_NAME = "df_hack_final.csv"
 
 
 def load_data(
