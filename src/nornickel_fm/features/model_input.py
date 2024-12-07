@@ -67,3 +67,53 @@ def make_dataset_cu(
     y_fm_2_3 = pd.concat([y_fm_2, y_fm_3], axis=0)
 
     return X_fm_2_3, y_fm_2_3
+
+
+def make_dataset_ni(
+    df: pd.DataFrame, config: Optional[dict] = None
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    """
+    Generates dataset for modeling flotation process of the 4th, 5th and 6th floating machine
+
+    """
+    if config is None:
+        config = CONFIG
+
+    fm_4_valid_ind = df[
+        df[config["fm_4_target_cols"]].notnull().sum(axis=1)
+        == len(config["fm_4_target_cols"])
+    ].index
+    fm_5_valid_ind = df[
+        df[config["fm_5_target_cols"]].notnull().sum(axis=1)
+        == len(config["fm_5_target_cols"])
+    ].index
+    fm_6_valid_ind = df[
+        df[config["fm_6_target_cols"]].notnull().sum(axis=1)
+        == len(config["fm_6_target_cols"])
+    ].index
+
+    X_fm_4 = df.loc[fm_4_valid_ind, config["fm_4_feature_cols"]]
+    X_fm_4["fm"] = 0
+    y_fm_4 = df.loc[fm_4_valid_ind, config["fm_4_target_cols"]]
+
+    X_fm_5 = df.loc[fm_5_valid_ind, config["fm_5_feature_cols"]]
+    X_fm_5["fm"] = 1
+    X_fm_5["Cu_5F"] = 0
+    y_fm_5 = df.loc[fm_5_valid_ind, config["fm_5_target_cols"]]
+
+    X_fm_6 = df.loc[fm_6_valid_ind, config["fm_6_feature_cols"]]
+    X_fm_6["fm"] = 2
+    X_fm_6["Cu_6F"] = 0
+    y_fm_6 = df.loc[fm_6_valid_ind, config["fm_6_target_cols"]]
+
+    X_fm_4.columns = config["fm_4_5_6_feature_cols"]
+    X_fm_5.columns = config["fm_4_5_6_feature_cols"]
+    X_fm_6.columns = config["fm_4_5_6_feature_cols"]
+    X_fm_4_5_6 = pd.concat([X_fm_4, X_fm_5, X_fm_6], axis=0)
+
+    y_fm_4.columns = config["fm_4_5_6_target_cols"]
+    y_fm_5.columns = config["fm_4_5_6_target_cols"]
+    y_fm_6.columns = config["fm_4_5_6_target_cols"]
+    y_fm_4_5_6 = pd.concat([y_fm_4, y_fm_5, y_fm_6], axis=0)
+
+    return X_fm_4_5_6, y_fm_4_5_6
