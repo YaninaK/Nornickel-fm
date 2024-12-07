@@ -8,6 +8,10 @@ __all__ = ["generate_optimal_features_ni"]
 
 
 def generate_optimal_features_ni(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Generates features for optimisation 4, 5 and 6 floating machines
+
+    """
 
     logging.info("Adding process result features...")
 
