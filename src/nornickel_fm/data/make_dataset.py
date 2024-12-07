@@ -9,8 +9,6 @@ logger = logging.getLogger(__name__)
 
 __all__ = ["load_data"]
 
-SAVE = True
-
 PATH = ""
 FOLDER_PATH = "data/01_raw/"
 FILE_NAME = "df_hack_final.csv"
