@@ -97,13 +97,14 @@ def make_dataset_ni(
     y_fm_4 = df.loc[fm_4_valid_ind, config["fm_4_target_cols"]]
 
     X_fm_5 = df.loc[fm_5_valid_ind, config["fm_5_feature_cols"]]
-    X_fm_5["fm"] = 1
     X_fm_5["Cu_5F"] = 0
+    X_fm_5["fm"] = 1
+    
     y_fm_5 = df.loc[fm_5_valid_ind, config["fm_5_target_cols"]]
 
     X_fm_6 = df.loc[fm_6_valid_ind, config["fm_6_feature_cols"]]
-    X_fm_6["fm"] = 2
     X_fm_6["Cu_6F"] = 0
+    X_fm_6["fm"] = 2
     y_fm_6 = df.loc[fm_6_valid_ind, config["fm_6_target_cols"]]
 
     X_fm_4.columns = config["fm_4_5_6_feature_cols"]
