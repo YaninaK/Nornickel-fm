@@ -11,7 +11,7 @@ __all__ = ["define_process_model_fm_2_3"]
 from . import MODEL_CONFIG
 
 
-def get_model_fm_1(
+def get_model_fm_2_3(
     X_fm_2_3: pd.DataFrame, config: Optional[dict] = None
 ) -> tf.keras.Model:
     """
